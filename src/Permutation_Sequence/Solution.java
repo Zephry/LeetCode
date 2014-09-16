@@ -11,6 +11,7 @@ public class Solution {
 
     public String getPermutation(int n, int k) {
     	List<Integer> num = new ArrayList<Integer>();
+    	List<String> Permutation = new ArrayList<String>();
     	
     	if(n == 1) {
     		return "1";
@@ -23,12 +24,19 @@ public class Solution {
         }
     }
     
-    public String getPermutAtIndex(List<Integer> num, int index, int count) {
+    public List<String> getPermutAtIndex(List<Integer> num, int count, List<String> Permutation, String currentPermutation) {
     	if(num.size() == 1) {
-    		return String.valueOf(num.get(0));
-    	}
-    	for(int i = 0;i < num.size();i++) {
-    		
+    		currentPermutation += String.valueOf(num.get(0));
+    		Permutation.add(currentPermutation);
+//    		if(Permutation.size() == count) {
+    			return Permutation;
+//    		}
+    	} else {
+	    	for(int i = 0;i < num.size();i++) {
+	    		currentPermutation += String.valueOf(num.get(i));
+	    		num.remove(i);
+	    		Permutation = getPermutAtIndex(num, count, Permutation, currentPermutation);
+	    	}
     	}
     }
     
