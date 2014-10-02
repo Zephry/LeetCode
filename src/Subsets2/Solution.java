@@ -6,7 +6,7 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] num = {1,9,8,3,-1,0};
+		int[] num = {2,1,2,1,3};
 		subsetsWithDup(num);
 	}
     public static List<List<Integer>> subsetsWithDup(int[] num) {
@@ -28,7 +28,7 @@ public class Solution {
     	}
     	for(int i=position;i<(S.length-len+1);i++) {
     		current.add(S[i]);
-    		if(len == 1 && !current.equals(last)) {
+    		if(len == 1 && !subSet.contains(current)) {
     			subSet.add(new ArrayList<Integer>(current));
     			last = new ArrayList<Integer>(current);
     		}
