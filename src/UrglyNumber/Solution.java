@@ -1,5 +1,8 @@
 package UrglyNumber;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Solution {
 
 	public static void main(String[] args) {
@@ -37,5 +40,19 @@ public class Solution {
 		
 		return currentNum-1;
 	}
-
+	
+	
+	public static int fastFindNumNom(int[] num, int m) {
+		int len = num.length;
+		if(len == 0) {
+			return 0;
+		}
+		int count = 0;
+		List<Integer> uglyNum = new ArrayList<Integer>();
+		uglyNum.add(2);
+		int max = 2;
+		
+		
+	}
+	
 }
