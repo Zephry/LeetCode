@@ -49,9 +49,11 @@ public class Solution {
 		}
 		int count = 0;
 		List<Integer> uglyNum = new ArrayList<Integer>();
-		uglyNum.add(2);
-		int max = 2;
-		
+		uglyNum.add(1);
+		int max = 1;
+		while((uglyNum.size()-1) != m) {
+			
+		}
 		
 	}
 	
