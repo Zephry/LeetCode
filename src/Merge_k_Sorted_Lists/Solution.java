@@ -2,6 +2,8 @@ package Merge_k_Sorted_Lists;
 
 import java.util.*;
 
+import MaxHeap.TreeNode;
+
 public class Solution {
 
 	public static void main(String[] args) {
@@ -51,7 +53,7 @@ public class Solution {
 		
 	}
 	
-    public static ListNode mergeKLists(List<ListNode> lists) {
+    public static ListNode mergeKListsSlow(List<ListNode> lists) {
         int k = lists.size();
         if(k==0) {
         	return null;
@@ -98,7 +100,85 @@ public class Solution {
         }
         return index;
     }
-
+    
+    public static ListNode mergeKLists(List<ListNode> lists) {
+    	int k = lists.size();
+        if(k==0) {
+        	return null;
+        }
+        int first = findMin(lists, k);
+        if(first == -1) {
+        	return null;
+        }
+        
+        TreeNode root = buildHeap(lists, k);
+        ListNode link = new ListNode(findMinFromHeap(root));
+        ListNode tmp = link;
+        int tmpMin = findMinFromHeap(root);
+        while(tmpMin != Integer.MAX_VALUE) {
+        	tmp.next = new ListNode(tmpMin);
+        	tmp = tmp.next;
+        }
+        return link;
+        
+        
+    }
+    public static int findMinFromHeap(TreeNode root) {
+    	int min = root.content.val;
+    	if(root.content.next != null) {
+    		root.content = root.content.next;
+    	}else {
+    		root.content.val = Integer.MAX_VALUE;
+    	}
+    	root = changeNode(root);
+    	
+    }
+    public static TreeNode buildHeap(List<ListNode> lists, int k) {
+    	Queue<TreeNode> nextNode = new LinkedList<TreeNode>();
+		
+		TreeNode root = new TreeNode(lists.get(0));
+		nextNode.add(root);
+		for(int i=1;i<k;i++) {
+			TreeNode curNode = nextNode.peek();
+			if(curNode.left == null) {
+				TreeNode newNode = new TreeNode(lists.get(i));
+				curNode.left = newNode;
+				nextNode.add(newNode);
+			}else {
+				TreeNode newNode = new TreeNode(lists.get(i));
+				curNode.right = newNode;
+				nextNode.add(newNode);
+				nextNode.remove();
+			}
+		}
+		return root;
+    }
+    public static TreeNode changeNode(TreeNode root) {
+    	int maxRight = Integer.MAX_VALUE;
+		int maxLeft = Integer.MAX_VALUE;
+		if(root.right != null) {
+			maxRight = root.right.content.val;
+		}
+		if(root.left != null) {
+			maxLeft = root.left.content.val;
+		}
+		if(root.content.val > maxLeft || root.content.val > maxRight) {
+			if(maxLeft > maxRight) {
+				int tmp = root.content.val;
+				root.content.val = root.right.content.val;
+				root.right.content.val = tmp;
+				changeNode(root.right);
+			}else {
+				int tmp = root.content.val;
+				root.content.val = root.left.content.val;
+				root.left.content.val = tmp;
+				changeNode(root.left);
+			}
+		}
+		
+		return root;
+    }
+    
 };
 
 class TreeNode {
