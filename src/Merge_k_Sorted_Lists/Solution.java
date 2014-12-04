@@ -99,4 +99,13 @@ public class Solution {
         return index;
     }
 
-}
+};
+
+class TreeNode {
+	ListNode content;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(ListNode content) {
+		this.content = content;
+	}
+};
