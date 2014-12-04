@@ -88,9 +88,49 @@ public class Solution {
 //		
 //	}
 	public static void sort(int[] array) {
+		int len = array.length;
+		int[] sortedArray = new int[len];
 		TreeNode root = buildHeap(array);
-		root = 	changeHeap(root);
+		for(int i=0;i<len;i++) {
+			root = 	changeHeap(root);
+			sortedArray[i] = root.val;
+			root = deleteLastNode(root);
+			
+		}
+		sortedArray[0] = 1;
 		
+	}
+	
+	public static TreeNode deleteLastNode(TreeNode root) {
+		Stack<TreeNode> noLeafNode = new Stack<TreeNode>();
+		Stack<TreeNode> nextNode = new Stack<TreeNode>();
+		nextNode.push(root);
+		
+		while(!nextNode.empty()) {
+			TreeNode curNode = nextNode.pop();
+			if(curNode.left != null) {
+				noLeafNode.push(curNode);
+				nextNode.push(curNode.left);
+				if(curNode.right != null) {
+					nextNode.push(curNode.right);
+				}
+			}
+		}
+		if(noLeafNode.size() == 0) {
+			return root;
+		}
+		TreeNode lastNode;
+		TreeNode lastNoLeafNode = noLeafNode.pop();
+		if(lastNoLeafNode.right != null) {
+			lastNode = lastNoLeafNode.right;
+			lastNoLeafNode.right = null;
+		}else {
+			lastNode = lastNoLeafNode.left;
+			lastNoLeafNode.left = null;
+		}
+		root.val = lastNode.val;
+		
+		return root;
 	}
 
 	
