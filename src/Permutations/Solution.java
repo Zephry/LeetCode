@@ -6,5 +6,9 @@ public class Solution {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public List<List<Integer>> permute(int[] num) {
+        
+    }
 
 }
