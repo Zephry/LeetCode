@@ -6,44 +6,49 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		longestValidParentheses("(()(((()");
+		longestValidParentheses("()()");
 	}
 	
 	public static int longestValidParentheses(String s) {
-		Stack<String> stack = new Stack<String>();
-		int max = 0;
-		int current = 0;
-		int tmp = 0;
-		String[] letters = s.split("");
-		for(String letter : letters) {
-			if(!letter.equals("")) {
-				if(letter.equals("(")) {
-					stack.push(letter);
-					tmp = 0;
-				}else {
-					if(!stack.isEmpty()) {
-						if(stack.lastElement().equals("(")) {
-							stack.pop();
-							current = current + 2;
-							if(stack.isEmpty()) {
-								if(current > max) {
-									max = current;
-								
-								}
-								tmp = 0;
-							} else{
-								tmp = tmp + 2;
-							}
-								
-						}else {
-							current = 0;
-						}
-					}else{
-						current = 0;
-						
-					}
+		String[] parts = s.split("");
+		int len = parts.length;
+		
+		int[] position = new int[len-1];
+		
+		
+		int left = 0;
+		Stack<Integer> right = new Stack<Integer>();
+		
+		for(int i=1;i<len;i++) {
+			position[i-1] = -1;
+			if(parts[i].equals("(")) {
+				left++;
+				right.push(i-1);
+			}else {
+				if(left!=0) {
+					left--;
+					int nextPosition = right.pop();
+					position[nextPosition] = i-1; 
+					
 				}
 			}
+		}
+		int max = 0;
+		int tmp = 0;
+		for(int i=0;i<len-1;i++) {
+			if(position[i]!= -1) {
+				tmp = tmp + (position[i]-i+1);
+				i = position[i];
+				if(tmp > max) {
+					max = tmp;
+				}
+			}else {
+				if(tmp > max) {
+					max = tmp;
+				}
+				tmp = 0;
+			}
+			
 		}
 		if(tmp > max) {
 			max = tmp;
