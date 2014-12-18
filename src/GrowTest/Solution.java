@@ -101,7 +101,7 @@ public class Solution {
 		return pattern;
 	}
 	
-	public static int findMinRoute() {
+	public static String findMinRoute() {
 		String start = "0122112211221122";
 		String end = "0212212112122121";
 		Set<String> map = new HashSet<String>();
@@ -109,57 +109,53 @@ public class Solution {
 		
 		Queue<String> nextPattern = new LinkedList<String>();
 		nextPattern.add(start);
-		Queue<Integer> count= new LinkedList<Integer>();
-		count.add(0);
-		int times = -1;
+		Queue<String> count= new LinkedList<String>();
+		count.add("");
+		String path = "";
 		while(!nextPattern.isEmpty()) {
 			String current = nextPattern.poll();
-			int[][] currentPattern = String2Pattern(current);
-			times = count.poll();
-			
-			String currentPatternLeft = pattern2String(exchange(currentPattern, GO_LEFT));
-			if(currentPatternLeft.equals(end)) {
+			path = count.poll();
+			if(current.equals(end)) {
 				break;
 			}
+			int[][] currentPattern = String2Pattern(current);
+			
+			
+			String currentPatternLeft = pattern2String(exchange(currentPattern, GO_LEFT));
+			
 			if(!map.contains(currentPatternLeft)) {
-				count.add(times+1);
+				count.add(path+"0");
 				map.add(currentPatternLeft);
 				nextPattern.add(currentPatternLeft);
 			}
 			currentPattern = String2Pattern(current);
 			String currentPatternRight = pattern2String(exchange(currentPattern, GO_RIGHT));
-			if(currentPatternRight.equals(end)) {
-				break;
-			}
+			
 			if(!map.contains(currentPatternRight)) {
-				count.add(times+1);
+				count.add(path+"1");
 				map.add(currentPatternRight);
 				nextPattern.add(currentPatternRight);
 			}
 			currentPattern = String2Pattern(current);
 			String currentPatternUp = pattern2String(exchange(currentPattern, GO_UP));
-			if(currentPatternUp.equals(end)) {
-				break;
-			}
+			
 			if(!map.contains(currentPatternUp)) {
-				count.add(times+1);
+				count.add(path+"2");
 				map.add(currentPatternUp);
 				nextPattern.add(currentPatternUp);
 			}
 			currentPattern = String2Pattern(current);
 			String currentPatternDown = pattern2String(exchange(currentPattern, GO_DOWN));
-			if(currentPatternDown.equals(end)) {
-				break;
-			}
+			
 			if(!map.contains(currentPatternDown)) {
-				count.add(times+1);
+				count.add(path+"3");
 				map.add(currentPatternDown);
 				nextPattern.add(currentPatternDown);
 			}
 			
 		}
 		
-		return times+1;
+		return path;
 		
 	}
 	
