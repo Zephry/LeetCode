@@ -1,10 +1,16 @@
 package Decode_Ways;
 
+import java.lang.reflect.Field;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Solution {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		numDecodings("27");
+//		numDecodings("27");
+		int[] array = {1,2};
+		change((array[0]), array[1]);
+		System.out.println(array[0]);
 	}
 	
     public static int numDecodings(String s) {
@@ -46,6 +52,20 @@ public class Solution {
     	
     	
     	
+    }
+    
+    public static void change(Integer a, Integer b) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    	Field f = a.getClass().getDeclaredField("value");
+    	f.setAccessible(true);           
+    	f.setInt(a, 2);
+//    	f = b.getClass().getDeclaredField("value");
+//    	f.setAccessible(true);           
+//    	f.setInt(b, b);
+//    	Node tmp = a;
+//    	a.val = 2;
+//    	a.val = b.val;
+//    	b = tmp;
+//    	a = 2;
     }
 
 }
