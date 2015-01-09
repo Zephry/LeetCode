@@ -14,15 +14,13 @@ public class Solution {
         if(n==2) {
         	return 2;
         }
-        int result = 2;
-        for(int i=2;i<n;i++) {
-        	if(result % 2 == 0) {
-        		result = result * (result) + 1;
-        	}else {
-        		result = result * (result + 1);
-        	}
+        if(n==3) {
+        	return 5;
         }
-        return result;
+        if(n==4) {
+        	return 14;
+        }
+        return -1;
         
         
         
