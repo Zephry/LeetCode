@@ -6,7 +6,8 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		longestValidParentheses("()()");
+		//System.out.println("()".split("").length);
+		System.out.println(longestValidParentheses1("()(((()"));
 	}
 	
 	public static int longestValidParentheses(String s) {
@@ -57,4 +58,52 @@ public class Solution {
 		
     }
 
+	
+	
+	
+	public static int longestValidParentheses1(String s) {
+		int len = s.length();
+		if(len <= 1) {
+			return 0;
+		}
+		int max = 0;
+		int tmp = 0;
+		Stack<Integer> startPosition = new Stack<Integer>();
+		String[] parentheses = s.split("");
+		int[] last = new int[s.length()];
+		Stack<String> stack = new Stack<String>();
+		for(int i=1;i<len+1;i++) {
+			if(parentheses[i].equals(")")) {
+				if(!stack.empty()) {
+					tmp = tmp + 2;
+					stack.pop();
+					int position = startPosition.pop();
+					tmp = tmp + last[position];
+					if(tmp > max) {
+						max = tmp;
+					}
+					
+					
+				}else {
+					if(tmp > max) {
+						max = tmp;
+					}
+					tmp = 0;
+				}
+				
+			}else if(parentheses[i].equals("(")) {
+				stack.push("(");
+				startPosition.push(i);
+				last[i] = tmp;
+				tmp = 0;
+			}
+			
+		}
+		return max;
+	}
+	
+	
+	
+	
+	
 }
