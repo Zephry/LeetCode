@@ -6,7 +6,9 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		restoreIpAddresses("0000");
+		
+		List<String> addressList = new ArrayList<String>();
+		addressList = restoreIpAddresses("0000");
 	}
 	
 	
@@ -16,7 +18,7 @@ public class Solution {
 		if(len == 0) {
 			return addressList;
 		}
-		addressList.add("");
+		
 		String[] tmp = s.split("");
 		String[] nums = new String[tmp.length-1];
 		for(int i=0;i<nums.length;i++) {
@@ -28,38 +30,34 @@ public class Solution {
     }
 	
 	public static List<String> generateAddress(String[] nums, int position, List<String> addressList, String tmp) {
-		if(position == nums.length) {
-			addressList.add("");
-			tmp = "";
-			return addressList;
-		}else {
-			String subString = addressList.get(addressList.size()-1);
-			
-			int last = 0;
-			if(tmp != "") {
-				last = Integer.valueOf(tmp);
-			}
-			if((last*10) + Integer.valueOf(nums[position]) > 255) {
-				subString = subString + tmp + ".";
-				tmp = nums[position];
-			}else {
-				subString = subString + tmp + nums[position] + ".";
-				tmp = "";
-			}
-			
-			String[] parts = subString.split(".");
-			if(parts.length == 5) {
-				subString = "";
-				tmp = "";
-				addressList.set(addressList.size()-1, subString);
-			}else {
-				addressList.set(addressList.size()-1, subString);
-				addressList = generateAddress(nums, position+1, addressList, tmp);
-			}
-			
+		String[] parts = tmp.split("\\.");
+		if(parts.length == 5) {
 			return addressList;
 		}
-			
+		if(position == nums.length) {
+			if(parts.length == 4) {
+				addressList.add(tmp);
+				return addressList;
+			}else {
+				return addressList;
+			}
+		}
+		
+		String last;
+		if(parts.length == 0) {
+			last = tmp;
+		}else {
+			last = parts[parts.length-1];
+		}
+		if(Integer.valueOf(last+nums[position]) < 256) {
+			addressList = generateAddress(nums, position+1, addressList, tmp+nums[position]);
+		}
+		if(tmp != "") {
+			addressList = generateAddress(nums, position+1, addressList, tmp+"."+nums[position]);
+		}
+		return addressList;
+		
+		
 		
 		
 	}
