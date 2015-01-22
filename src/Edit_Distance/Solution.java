@@ -20,6 +20,7 @@ public class Solution {
         int[] lastDistance;
         int[] curDistance = new int[word2Len];
         
+        
         boolean contained = false;
         String firstChar = word1.substring(0, 1);
         for(int i=0;i<word2Len;i++) {
