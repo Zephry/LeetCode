@@ -4,9 +4,15 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		test((int)4000);
 	}
 	
+	public static void test(double a) {
+		System.out.println("double");
+	}
+	public static void test(int a) {
+		System.out.println("int");
+	}
 	
     public int candy(int[] ratings) {
     	int len = ratings.length;

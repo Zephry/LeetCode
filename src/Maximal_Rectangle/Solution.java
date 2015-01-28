@@ -6,7 +6,7 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		System.out.println(maximalRectangle(new char[][] {"01101".toCharArray(),"11010".toCharArray(),"01110".toCharArray(),"11110".toCharArray(),"11111".toCharArray(),"00000".toCharArray()}));
 	}
 	
