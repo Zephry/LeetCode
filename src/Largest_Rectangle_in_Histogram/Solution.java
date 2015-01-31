@@ -6,6 +6,7 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 		System.out.println(largestRectangleArea(new int[] {3,6,5,7,4,8,1,0}));
 	}
 
@@ -76,4 +77,5 @@ public class Solution {
     	return max;
     	
     }
+
 }
