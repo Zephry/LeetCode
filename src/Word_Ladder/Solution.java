@@ -41,7 +41,7 @@ public class Solution {
 	        				dictPoint.remove(tmp);
 	        				startPoints.add(tmp);
 	        				dictPoints.add(new HashSet<String>(dictPoint));
-//	        				dictPoint.add(tmp);
+	        				dictPoint.add(tmp);
 	        			}
 	        		}
 	    		}
