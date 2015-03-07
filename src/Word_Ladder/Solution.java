@@ -18,14 +18,14 @@ public class Solution {
     public static int ladderLength(String start, String end, Set<String> dict) {
     	int maxLen = dict.size();
     	Queue<String> startPoints = new LinkedList<String>();
-    	Queue<Set<String>> dictPoints = new LinkedList<Set<String>>();
+    	Queue<Integer> distances = new LinkedList<Integer>();
     	dict.remove(start);
     	startPoints.add(start);
-    	dictPoints.add(dict);
+    	distances.add(0);
     	
     	while(!startPoints.isEmpty()) {
     		String startPoint = startPoints.poll();
-    		Set<String> dictPoint = dictPoints.poll();
+    		int distance = distances.poll();
     		int len = startPoint.length();
     		String tmp = "";
     		
@@ -33,15 +33,15 @@ public class Solution {
     			char[] tmpWord = startPoint.toCharArray();;
 	    		for(int i=0;i<26;i++) {
 	    			tmpWord[j] = (char)(97+i);
-	    			tmp = String.valueOf(tmpWord);
+	    			tmp = new String(tmpWord);
 	        		if(tmp.equals(end)) {
-	        			return (maxLen-dictPoint.size()+2);
+	        			return distance+2;
 	        		}else {
-	        			if(dictPoint.contains(tmp)) {
-	        				dictPoint.remove(tmp);
+	        			if(dict.contains(tmp)) {
+	        				dict.remove(tmp);
 	        				startPoints.add(tmp);
-	        				dictPoints.add(new HashSet<String>(dictPoint));
-	        				dictPoint.add(tmp);
+	        				distances.add(distance+1);
+	        				
 	        			}
 	        		}
 	    		}
