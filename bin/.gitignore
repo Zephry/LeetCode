@@ -1,9 +1,12 @@
+/Intersection_of_Two_Linked_Lists/
 /Add_Binary/
 /Anagrams/
 /Balanced_Binary_Tree/
 /Best_Time_to_Buy_and_Sell_Stock/
 /Best_Time_to_Buy_and_Sell_Stock2/
 /Best_Time_to_Buy_and_Sell_Stock3/
+/Binary_Search_In_Dulipated_Array/
+/Binary_Search_Tree_Iterator/
 /Binary_Tree_Inorder_Traversal/
 /Binary_Tree_Level_Order_Traversal/
 /Binary_Tree_Level_Order_Traversal2/
@@ -29,6 +32,7 @@
 /Excel_Sheet_Column_Title/
 /Factorial_Trailing_Zeroes/
 /Find_Minimum_in_Rotated_Sorted_Array/
+/Find_Minimum_in_Rotated_Sorted_Array_II/
 /Find_Peak_Element/
 /First_Missing_Positive/
 /Flatten_Binary_Tree_to_Linked_List/
@@ -50,6 +54,7 @@
 /Longest_Consecutive_Sequence/
 /Longest_Substring_Without_Repeating_Characters/
 /Longest_Valid_Parentheses/
+/Majority_Element/
 /MaxHeap/
 /MaxLine_WithoutX/
 /Maximal_Rectangle/
@@ -61,6 +66,7 @@
 /Minimum_Depth_of_Binary_Tree/
 /Minimum_Window_Substring/
 /Palindrome_Number/
+/Palindrome_Partitioning/
 /Pascal_Triangle/
 /Path_Sum/
 /Path_Sum2/
@@ -89,6 +95,7 @@
 /Search_Insert_Position/
 /Search_a_2D_Matrix/
 /Search_for_a_Range/
+/Search_in_Rotated_Sorted_Array/
 /Set_Matrix_Zeroes/
 /Simplify_Path/
 /Single_Number/
@@ -115,16 +122,3 @@
 /Validate_Binary_Search_Tree/
 /Wildcard_Matching/
 /WordLadder2.class
-/Word_Break/
-/Word_Break2/
-/Word_Ladder_2/
-/Word_Search/
-/XiongYaLiPath/
-/ZigZag/
-/Word_Ladder/
-/Find_Minimum_in_Rotated_Sorted_Array_II/
-/Majority_Element/
-/Binary_Search_Tree_Iterator/
-/Palindrome_Partitioning/
-/Search_in_Rotated_Sorted_Array/
-/Binary_Search_In_Dulipated_Array/
