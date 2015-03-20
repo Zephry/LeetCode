@@ -7,8 +7,8 @@ public class Solution {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println(largestRectangleArea2(new int[] {3,6,5,7,4,8,1,0}));
-//		System.out.println(largestRectangleArea(new int[] {5,4, 1, 2}));
+		System.out.println(largestRectangleArea(new int[] {3,6,5,7,4,8,1,0}));
+		System.out.println(largestRectangleArea(new int[] {5,4, 1, 2}));
 		System.out.println(largestRectangleArea(new int[] {4,2,0,3,2,5}));
 	}
 
@@ -85,60 +85,46 @@ public class Solution {
         if(len == 0) {
         	return 0;
         }else {
-        	
-        	int maxArea = 0;
+        	int[] h = Arrays.copyOf(height, len+1);
+        	h[len] = 0;
         	Stack<Integer> stack = new Stack<Integer>();
-        	int last = Integer.MIN_VALUE;
-        	for(int i=0;i<len;i++) {
-        		if(height[i] >= last) {
+        	int last = h[0];
+        	stack.push(0);
+        	int maxArea = 0;
+        	for(int i=1;i<len+1;i++) {
+        		if(h[i] >= last) {
         			stack.push(i);
-        			last = height[i];
+        			last = h[i];
         		}else {
-        			int highestPosition = 0;
-        			int lasthighest = 0;
-        			while(!stack.isEmpty()) {
-        				highestPosition = stack.peek();
+        			int leftStart = 0;
+        			while(!stack.empty()) {
+        				int leftStartPosition = stack.peek();
         				
-    					int tempArea = lasthighest * (i-highestPosition-1);
-        				if(tempArea > maxArea) {
-        					maxArea = tempArea;
-        				}
-        				if(height[highestPosition] < height[i]) {
-            				break;
+        				int tmpArea = leftStart * (i-leftStartPosition-1);
+    					if(tmpArea>maxArea) {
+    						maxArea = tmpArea;
+    					}
+        				if(h[leftStartPosition] > h[i]) {
+        					leftStart = h[leftStartPosition];
+        					stack.pop();
+        					tmpArea = leftStart * (i-leftStartPosition);
+        					if(tmpArea>maxArea) {
+        						maxArea = tmpArea;
+        					}
         				}else {
-        					lasthighest = height[stack.pop()];
-        					tempArea = height[highestPosition] * (i-highestPosition);
-            				if(tempArea > maxArea) {
-            					maxArea = tempArea;
-            				}
-            				if(stack.empty()) {
-            	        		tempArea = height[highestPosition] * (i);
-            		        	if(tempArea > maxArea) {
-            						maxArea = tempArea;
-            					}
-            	        	}
+        					break;
         				}
-        				
         			}
-        			
+        			if(stack.empty()) {
+        				int tmpArea = leftStart * (i);
+    					if(tmpArea>maxArea) {
+    						maxArea = tmpArea;
+    					}
+        			}
         			stack.push(i);
-        			last = height[i];
+        			last = h[i];
         		}
         	}
-        	while(!stack.isEmpty()) {
-				int highestPosition = stack.pop();
-				int tempArea = height[highestPosition] * (len-highestPosition);
-	        	if(tempArea > maxArea) {
-					maxArea = tempArea;
-				}
-	        	if(stack.empty()) {
-	        		tempArea = height[highestPosition] * (len);
-		        	if(tempArea > maxArea) {
-						maxArea = tempArea;
-					}
-	        	}
-        	}
-        	
         	return maxArea;
         	
         	        		
